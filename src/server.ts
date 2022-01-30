@@ -60,9 +60,9 @@ app.get('/api/tickerprices24h', cors(corsOptions), async function (req, res) {
     }
 });
 
-app.get('/api/candles/:market/:interval', cors(corsOptions), async function (req, res) {
+app.get('/api/candles/:market/:interval/:limit?', cors(corsOptions), async function (req, res) {
     try {
-        const response = await bitvavoService.getCandles(req.params.market, req.params.interval);
+        const response = await bitvavoService.getCandles(req.params.market, req.params.interval, req.params.limit);
         return res.json(response);
     } catch (err) {
         console.log(err);

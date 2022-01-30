@@ -67,11 +67,11 @@ export class BitvavoService {
         // })
     }
 
-    public async getCandles(market: string, interval: string): Promise<CandleResponse[]> {
+    public async getCandles(market: string, interval: string, limit = 120): Promise<CandleResponse[]> {
         try {
             if (this.ensurePositiveLimit()) {
                 const list: CandleResponse[] = [];
-                const response = await bitvavo.candles(market, interval);
+                const response = await bitvavo.candles(market, interval, { limit });
                 for (const item of response) {
                     list.push(new CandleResponse(item));
                 }
